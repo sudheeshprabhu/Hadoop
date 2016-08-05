@@ -1,7 +1,7 @@
 # Hadoop
 Hadoop pre-requisites 
 
-This is shell script for doing Hadoop pre-requisitess listed below:
+This is shell script for doing Hadoop pre-requisites listed below:
 
 Stop and disable IPtables
 
