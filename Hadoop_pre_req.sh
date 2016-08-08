@@ -26,19 +26,19 @@ echo
 
 #Update network file and restart
 
-sed -i.bak 's|^IPV6INIT.*|IPV6INIT=no|g' /etc/sysconfig/network
-sed -i 's|^NETWORKING_IPV6.*|NETWORKING_IPV6=no|g' /etc/sysconfig/network
-sed -i 's|^NETWORKING[ ]*=.*|NETWORKING=yes|g' /etc/sysconfig/network
-sed -i "s/^HOSTNAME[ ]*=.*/HOSTNAME=`hostname`/g" /etc/sysconfig/network
+sed -i.bak 's|^[ ]*IPV6INIT.*|IPV6INIT=no|g' /etc/sysconfig/network
+sed -i 's|^[ ]*NETWORKING_IPV6.*|NETWORKING_IPV6=no|g' /etc/sysconfig/network
+sed -i 's|^[ ]*NETWORKING[ ]*=.*|NETWORKING=yes|g' /etc/sysconfig/network
+sed -i "s/^[ ]*HOSTNAME[ ]*=.*/HOSTNAME=`hostname`/g" /etc/sysconfig/network
 /etc/init.d/network restart
 
 #Disable SELINUX
 
-sed -i.bak 's/^SELINUX[ ]*=.*/SELINUX=disabled/g' /etc/selinux/config
+sed -i.bak 's/^[ ]*SELINUX[ ]*=.*/SELINUX=disabled/g' /etc/selinux/config
 
 #SET VM Swappiness to 0
 
-grep "vm.swappiness[ ]*=" /etc/sysctl.conf
+grep "^[ ]*vm.swappiness[ ]*=" /etc/sysctl.conf
 if [ $? -eq 0 ]
 then
 sed -i.bak 's/vm.swappiness[ ]*=.*/vm.swappiness=0/g' /etc/sysctl.conf
