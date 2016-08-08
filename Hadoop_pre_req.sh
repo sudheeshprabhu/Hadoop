@@ -38,7 +38,7 @@ sed -i.bak 's/^SELINUX[ ]*=.*/SELINUX=disabled/g' /etc/selinux/config
 
 #SET VM Swappiness to 0
 
-grep "vm.swappiness=" /etc/sysctl.conf
+grep "vm.swappiness[ ]*=" /etc/sysctl.conf
 if [ $? -eq 0 ]
 then
 sed -i.bak 's/vm.swappiness[ ]*=.*/vm.swappiness=0/g' /etc/sysctl.conf
@@ -70,8 +70,10 @@ then
 	if [ $? -eq 0 ]
 		then
 		echo " NTP service is running"
+		chkconfig ntp on
 	else
 		/etc/init.d/ntpd start
+		chkconfig ntp on
 	fi
 else
 yum install ntp
@@ -115,6 +117,7 @@ echo " Verify NTPD service"
 echo "=========================="
 
 /etc/init.d/ntpd status
+chkconfig --list |grep "ntpd "
 
 echo "=========================="
 
