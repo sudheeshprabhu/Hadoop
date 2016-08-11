@@ -41,7 +41,7 @@ sed -i.bak 's/^[ ]*SELINUX[ ]*=.*/SELINUX=disabled/g' /etc/selinux/config
 grep "^[ ]*vm.swappiness[ ]*=" /etc/sysctl.conf
 if [ $? -eq 0 ]
 then
-sed -i.bak 's/vm.swappiness[ ]*=.*/vm.swappiness=0/g' /etc/sysctl.conf
+sed -i.bak 's/[ ]*vm.swappiness[ ]*=.*/vm.swappiness=0/g' /etc/sysctl.conf
 else
 echo "vm.swappiness=0" >>/etc/sysctl.conf
 fi
